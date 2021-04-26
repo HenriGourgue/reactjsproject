@@ -53,7 +53,7 @@ app.post('/beers/favorites/add', (req, res) => {
     });
 })
 
-app.delete('/beers/favorites/delete', (req, res) => {
+app.post('/beers/favorites/delete', (req, res) => {
 
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');

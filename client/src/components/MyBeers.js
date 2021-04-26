@@ -25,8 +25,24 @@ class MyBeers extends React.Component {
     this.setState({ favorites: beersFound.favorites, done: true })
   }
 
+  refresh = () => {
+    // re-renders the component
+    this.setState({});
+  };
+
+  deleteBeer = async (beer) => {
+
+    for(let i=0; i<this.state.favorites.length; i -= -1){
+      if(beer.id == this.state.favorites[i].id){
+        this.state.favorites.splice(i, 1);
+        this.refresh();
+        return;
+      }
+    }
+  }
+
     render() {
-      const listBeers = this.state.favorites.map((beer) => <div><BeerItemFavorite key={beer.name} beer={beer}/></div>);
+      const listBeers = this.state.favorites.map((beer) => <div><BeerItemFavorite deleteBeer={this.deleteBeer} key={beer.name} beer={beer}/></div>);
       return (
         <div>
           {this.state.done == true &&

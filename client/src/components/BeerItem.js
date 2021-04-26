@@ -11,8 +11,6 @@ class BeerItem extends React.Component {
 
         let beer = this.props.beer;
 
-        console.log('heere', beer.abv)
-
         const response = await axios.post("http://localhost:3001/beers/favorites/add", {beer: beer, userEmail: localStorage.getItem("userEmail")});
 
         if(response.data.error != "no"){

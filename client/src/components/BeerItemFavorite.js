@@ -10,6 +10,15 @@ class BeerItem extends React.Component {
     deleteFromFavorite = async () => {
 
         let beer = this.props.beer;
+
+        const response = await axios.post("http://localhost:3001/beers/favorites/delete", {beer: beer, userEmail: localStorage.getItem("userEmail")});
+
+        if(response.data.error != "no"){
+            alert(response.data.error);
+        } else {
+            alert("Bière reetirée !");
+            this.props.deleteBeer(beer);
+        }
     }
 
     render() {
