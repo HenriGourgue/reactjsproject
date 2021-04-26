@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
- 
+import toast, { Toaster } from 'react-hot-toast';
+
 function Register(props) {
 
     const history = useHistory();
@@ -32,9 +33,10 @@ function Register(props) {
 
                 if(error === "no"){
                     //Success
+                    toast.success('Inscriptiion réussie !');
                     history.push("/login");
                 } else {
-                    alert(error)
+                    toast.error(error);
                 }
             }
         }

@@ -1,21 +1,18 @@
 import React, { useState, useEffect  } from 'react';
-import { useLocation, useHistory } from "react-router-dom";
-import axios from 'axios';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import MyBeers from '../components/MyBeers';
 import RandomBeers from '../components/RandomBeers';
 import About from '../components/About';
+import SearchBeers from '../components/SearchBeers';
+import toast, { Toaster } from 'react-hot-toast';
  
 function Home() {
 
     const [myBeers, setMyBeers] = useState(false);
     const [randomBeers, setRandomBeers] = useState(false);
     const [about, setAbout] = useState(false);
+    const [searchBeers, setSearchBeers] = useState(false);
+    const [beerValueSearch, setBeerValueSearch] = useState("");
 
     const beerName = useFormInput('');
 
@@ -24,38 +21,56 @@ function Home() {
     const showFavorites = async () => {
         setRandomBeers(false);
         setAbout(false);
-        setMyBeers(true);
+        setSearchBeers(false);
+        setMyBeers(false);
+
+        setTimeout(function(){ setMyBeers(true); }, 10);
     }
 
     const showRandom = async () => {
         setMyBeers(false);
         setAbout(false);
-        setRandomBeers(true);
+        setSearchBeers(false);
+        setRandomBeers(false);
+
+        setTimeout(function(){ setRandomBeers(true); }, 10);
     }
 
     const showAbout = async () => {
         setMyBeers(false);
         setRandomBeers(false);
-        setAbout(true);
+        setSearchBeers(false);
+        setAbout(false);
+
+        setTimeout(function(){ setAbout(true); }, 10);
     }
 
     const showHome = async () => {
         setMyBeers(false);
         setRandomBeers(false);
         setAbout(false);
+        setSearchBeers(false);
+    }
+
+    const showSearch = async () => {
+        setMyBeers(false);
+        setRandomBeers(false);
+        setAbout(false);
+        setSearchBeers(false);
+
+        setTimeout(function(){ setSearchBeers(true); }, 10);
     }
 
     const findBeers = async () => {
-        
-        let localBeerName = beerName.value;
-
-        const response = await axios.get("https://api.punkapi.com/v2/beers?beer_name=" + localBeerName);
-
-        let beersFound = response.data;
+        if(beerName.value != ""){
+            setBeerValueSearch(beerName.value);
+            showSearch();
+        }
     }
 
     const logout = async () => {
 
+        toast.success('Déconnexion réussie !');
         localStorage.clear();
         history.push("/login");
     }
@@ -121,7 +136,13 @@ function Home() {
                     </div>
                 }
 
-                {!myBeers && !randomBeers && !about &&
+                {searchBeers &&
+                    <div id="bodyItem">
+                        <SearchBeers value={beerValueSearch}/>
+                    </div>
+                }
+
+                {!myBeers && !randomBeers && !about && !searchBeers &&
                     <div id="bodyItem">
                         Page d'accueil !
                     </div>

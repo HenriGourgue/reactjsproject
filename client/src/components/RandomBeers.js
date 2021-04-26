@@ -18,6 +18,22 @@ class RandomBeers extends React.Component {
     this.findRandomBeers();
   }
 
+  deleteBeer = async (beer) => {
+
+    for(let i=0; i<this.state.randoms.length; i -= -1){
+      if(beer.id == this.state.randoms[i].id){
+        this.state.randoms.splice(i, 1);
+        this.refresh();
+        return;
+      }
+    }
+  }
+
+  refresh = () => {
+    // re-renders the component
+    this.setState({});
+  };
+
   findRandomBeers = async () => {
 
     for(let i = 0; i < this.nbItemsWanted; i -= -1){
@@ -26,7 +42,7 @@ class RandomBeers extends React.Component {
 
         const fetchedBeer = response.data[0];
 
-        let beer = {id: fetchedBeer.id, name: fetchedBeer.name, abv: fetchedBeer.abv, image: fetchedBeer.image_url, description: fetchedBeer.description, tag: fetchedBeer.tagline}
+        let beer = {id: fetchedBeer.id, name: fetchedBeer.name, abv: fetchedBeer.abv, image: fetchedBeer.image_url, description: fetchedBeer.description, tag: fetchedBeer.tagline};
 
         this.setState({ randoms: [...this.state.randoms, beer] })
     }
@@ -35,7 +51,7 @@ class RandomBeers extends React.Component {
   }
 
   render() {
-    const listBeers = this.state.randoms.map((beer) => <div><BeerItem key={beer.name} beer={beer}/></div>);
+    const listBeers = this.state.randoms.map((beer) => <div><BeerItem deleteBeer={this.deleteBeer} key={beer.name} beer={beer}/></div>);
     return (
         <div>
             <h1>Bières aléatoires :</h1>
@@ -45,7 +61,7 @@ class RandomBeers extends React.Component {
 
             {this.state.done == false &&
                 <div class="spinner-border text-primary" role="status">
-                    <span class="sr-only">Loading...</span>
+                    <span class="sr-only">Chargement...</span>
                 </div>
             }
         </div>

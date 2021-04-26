@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
  
 function Login(props) {
 
@@ -26,11 +27,12 @@ function Login(props) {
 
             if(error === "no"){
                 //Success
+                toast.success('Connexion réussie !');
                 setUser(localEmail);
                 localStorage.setItem('userEmail', localEmail);
                 history.push("/", {email:localEmail});
             } else {
-                alert(error)
+                toast.error(error);
             }
         }
     }

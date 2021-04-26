@@ -5,9 +5,14 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import Register from './screens/Register';
 
+import toast, { Toaster } from 'react-hot-toast';
+
+const notify = () => toast('Here is your toast.');
+
 function App() {
   return (
     <div className="App">
+      <Toaster />
       <BrowserRouter>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 class BeerItem extends React.Component {
 
@@ -14,9 +15,9 @@ class BeerItem extends React.Component {
         const response = await axios.post("http://localhost:3001/beers/favorites/delete", {beer: beer, userEmail: localStorage.getItem("userEmail")});
 
         if(response.data.error != "no"){
-            alert(response.data.error);
+            toast.error(response.data.error);
         } else {
-            alert("Bière reetirée !");
+            toast.success('Bière retirée dess favoris !');
             this.props.deleteBeer(beer);
         }
     }
