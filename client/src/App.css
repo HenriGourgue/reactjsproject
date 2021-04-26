@@ -28,6 +28,40 @@
   color: #61dafb;
 }
 
+.cardLogin {
+  width: 30rem;
+}
+
+.centerContent {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#cardFavorite {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-top: 2%;
+  width: 50%;
+}
+
+#imgFavorite {
+  margin-top: 2%;
+  height: 150px;
+}
+
+#customLink:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#bodyItem {
+  margin-bottom: 2%;
+}
+
+#infoNoBeer {
+  margin: 6%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
