@@ -43,7 +43,7 @@ app.post('/beers/favorites/add', (req, res) => {
                 res.json({error:'La bière est déjà dans vos favoris.'});
             } else {
                 //Insert into favorites
-                connection.query('insert into favorite values(' + beer.id + ',"' + beer.name + '",' + beer.abv + ',"' + beer.image + '","' + beer.description + '","' + beer.tag + '",' + userId + ');', (err, rows) => {
+                connection.query('insert into favorite values(' + beer.id + ',"' + beer.name + '",' + beer.abv + ',"' + beer.image + '","' + beer.description + '","' + beer.tag + '",' + userId + ',"' + beer.date + '");', (err, rows) => {
                     if(err) throw err;
 
                     res.json({error:'no'});

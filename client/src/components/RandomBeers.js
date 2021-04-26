@@ -42,7 +42,7 @@ class RandomBeers extends React.Component {
 
         const fetchedBeer = response.data[0];
 
-        let beer = {id: fetchedBeer.id, name: fetchedBeer.name, abv: fetchedBeer.abv, image: fetchedBeer.image_url, description: fetchedBeer.description, tag: fetchedBeer.tagline};
+        let beer = {id: fetchedBeer.id, name: fetchedBeer.name, abv: fetchedBeer.abv, image: fetchedBeer.image_url, description: fetchedBeer.description, tag: fetchedBeer.tagline, date: fetchedBeer.first_brewed};
 
         this.setState({ randoms: [...this.state.randoms, beer] })
     }
@@ -53,8 +53,12 @@ class RandomBeers extends React.Component {
   render() {
     const listBeers = this.state.randoms.map((beer) => <div><BeerItem deleteBeer={this.deleteBeer} key={beer.name} beer={beer}/></div>);
     return (
-        <div>
-            <h1>Bières aléatoires :</h1>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h1>Bières aléatoires :</h1><br/>
+              </div>
+            </div>
             {this.state.done == true && this.state.randoms.length > 0 &&
                 listBeers
             }

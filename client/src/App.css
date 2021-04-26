@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -32,18 +28,6 @@
   width: 30rem;
 }
 
-.centerContent {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#cardFavorite {
-  margin: 0 auto; /* Added */
-  float: none; /* Added */
-  margin-top: 2%;
-  width: 50%;
-}
-
 #imgFavorite {
   margin-top: 2%;
   height: 150px;
@@ -60,6 +44,19 @@
 
 #infoNoBeer {
   margin: 6%;
+}
+
+body {
+  margin-top: 80px;
+  font-family: 'Mukta', sans-serif;
+}
+
+.favorite {
+  padding: 10px;
+}
+
+.img-fix-height {
+  height: 250px;
 }
 
 @keyframes App-logo-spin {

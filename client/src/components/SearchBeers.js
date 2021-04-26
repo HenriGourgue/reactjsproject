@@ -26,7 +26,7 @@ class SearchBeers extends React.Component {
 
         for(let i = 0; i < beersFound.length; i -= -1){
 
-            let beer = {id: beersFound[i].id, name: beersFound[i].name, abv: beersFound[i].abv, image: beersFound[i].image_url, description: beersFound[i].description, tag: beersFound[i].tagline};
+            let beer = {id: beersFound[i].id, name: beersFound[i].name, abv: beersFound[i].abv, image: beersFound[i].image_url, description: beersFound[i].description, tag: beersFound[i].tagline, date: beersFound[i].first_brewed};
             this.setState({ beers: [...this.state.beers, beer] })
         }
 
@@ -52,8 +52,12 @@ class SearchBeers extends React.Component {
     render() {
         const listBeers = this.state.beers.map((beer) => <div><BeerItem deleteBeer={this.deleteBeer} key={beer.name} beer={beer}/></div>);
         return (
-            <div>
-                <h1>Bières trouvées :</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Bières trouvées :</h1><br/>
+                    </div>
+                </div>
                 {this.state.done == true && this.state.beers.length > 0 &&
                     listBeers
                 }
