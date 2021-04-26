@@ -1,10 +1,8 @@
-truncate table favorite;
+truncate table if exists favorite;
 drop table if exists favorite;
 
-truncate table user;
+truncate table if exists user;
 drop table if exists user;
-
-CREATE DATABASE IF NOT EXISTS beer;
 
 CREATE TABLE IF NOT EXISTS user(
     id MEDIUMINT not null AUTO_INCREMENT,
