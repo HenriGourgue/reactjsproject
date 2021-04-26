@@ -70,4 +70,4 @@ cd ./client && npm start&
 ```
 
 App should run on: ``` http://localhost:3000 ``` 
-Server shouldd run on: ``` http://localhost:3001 ```
+Server should run on: ``` http://localhost:3001 ```
