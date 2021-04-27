@@ -46,7 +46,7 @@ cd ./client && npm i
 ## Import the sql schema
 
 There is an SQL script to clone the sql schema. First you'll need to create the database.
-By default, the database used for the server is "**beer**" with the user "**root**" and passsword "**root**".
+By default, the database used for the server is "**beers**" with the user "**root**" and passsword "**root**".
 To change the default sql config, open server/server.js andd edit "**connection**" paramater.
 
 You'll need to execute the next coommand from the root path:
