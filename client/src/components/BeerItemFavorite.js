@@ -47,7 +47,7 @@ class BeerItem extends React.Component {
                                 <div class="card-body">
                                     <h2 class="card-title">{this.props.beer.name}</h2>
                                     <h6 class="card-subtitle mb-2 text-muted">
-                                        <i class="fas fa-tag"></i>{this.props.beer.tag} &nbsp;
+                                        <i class="fas fa-tag"></i>{this.props.beer.tag} &nbsp; 
                                         <i class="fas fa-calendar-day"></i> {this.props.beer.date} &nbsp; 
                                         <i class="fas fa-percentage"></i> {this.props.beer.abv}
                                     </h6><br/>

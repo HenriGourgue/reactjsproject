@@ -1,21 +1,15 @@
 const express = require('express');
 var cors = require('cors');
-const mysql = require('mysql');
 const bodyParser = require("body-parser");
+var db = require('./Database/db');
+
 const app = express();
 const port = 3001;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-const connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'root',
-    database : 'beers'
-});
-
-connection.connect((err) => {
+db.connect((err) => {
     if(err) throw err;
     console.log('Connected to MySQL Server!');
 });
@@ -30,20 +24,20 @@ app.post('/beers/favorites/add', (req, res) => {
     let userEmail=req.body.userEmail;
 
     //Get userId
-    connection.query('select id as userId from user where email = "' + userEmail + '";', (err, rows) => {
+    db.query('select id as userId from user where email = "' + userEmail + '";', (err, rows) => {
         if(err) throw err;
 
         let userId = rows[0].userId;
 
         //Verify if favorite already exists
-        connection.query('SELECT count(*) as result from favorite where userId = '  + userId + ' and id = ' +  beer.id + ';', (err, rows) => {
+        db.query('SELECT count(*) as result from favorite where userId = '  + userId + ' and id = ' +  beer.id + ';', (err, rows) => {
             if(err) throw err;
 
             if(rows[0].result === 1){
                 res.json({error:'La bière est déjà dans vos favoris.'});
             } else {
                 //Insert into favorites
-                connection.query('insert into favorite values(' + beer.id + ',"' + beer.name + '",' + beer.abv + ',"' + beer.image + '","' + beer.description + '","' + beer.tag + '",' + userId + ',"' + beer.date + '");', (err, rows) => {
+                db.query('insert into favorite values(' + beer.id + ',"' + beer.name + '",' + beer.abv + ',"' + beer.image + '","' + beer.description + '","' + beer.tag + '",' + userId + ',"' + beer.date + '");', (err, rows) => {
                     if(err) throw err;
 
                     res.json({error:'no'});
@@ -63,13 +57,13 @@ app.post('/beers/favorites/delete', (req, res) => {
     let userEmail=req.body.userEmail;
 
     //Get userId
-    connection.query('select id as userId from user where email = "' + userEmail + '";', (err, rows) => {
+    db.query('select id as userId from user where email = "' + userEmail + '";', (err, rows) => {
         if(err) throw err;
 
         let userId = rows[0].userId;
 
         //Delete correct beer from favorite
-        connection.query('DELETE from favorite where userId=' + userId + ' and id=' + beer.id + ';', (err, rows) => {
+        db.query('DELETE from favorite where userId=' + userId + ' and id=' + beer.id + ';', (err, rows) => {
             if(err) throw err;
 
             res.json({error:'no'});
@@ -85,13 +79,13 @@ app.post('/beers/favorites', (req, res) => {
 
     let userEmail=req.body.email;
 
-    connection.query('SELECT id from user where email="' + userEmail + '";', (err, rows) => {
+    db.query('SELECT id from user where email="' + userEmail + '";', (err, rows) => {
         if(err) throw err;
 
         let userId=rows[0].id;
 
         if(rows[0].id){
-            connection.query('SELECT * from favorite where userId=' + userId + ';', (err, rows) => {
+            db.query('SELECT * from favorite where userId=' + userId + ';', (err, rows) => {
                 if(err) throw err;
 
                 res.json({error:'no', favorites: rows});
@@ -111,7 +105,7 @@ app.post('/user/login', (req, res) => {
     let email=req.body.email;
     let password=req.body.password;
 
-    connection.query('SELECT count(*) as result from user where email="' + email + '" and password="' + password +'";', (err, rows) => {
+    db.query('SELECT count(*) as result from user where email="' + email + '" and password="' + password +'";', (err, rows) => {
         if(err) throw err;
 
         if(rows[0].result === 1){
@@ -132,13 +126,13 @@ app.post('/user/register', (req, res) => {
     let email=req.body.email;
     let password=req.body.password;
 
-    connection.query('select count(*) as result from user where email="' + email + '";', (err, rows) => {
+    db.query('select count(*) as result from user where email="' + email + '";', (err, rows) => {
         if(err) throw err;
 
         if(rows[0].result === 1){
             res.json({error:'L\'adresse email est déjà utilisée.'});
         } else {
-            connection.query('insert into user(name, email, password) values ("' + name + '", "' + email + '", "' + password +'");', (err, rows) => {
+            db.query('insert into user(name, email, password) values ("' + name + '", "' + email + '", "' + password +'");', (err, rows) => {
                 if(err) throw err;
 
                 res.json({error:'no'});
