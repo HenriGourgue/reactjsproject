@@ -36,6 +36,7 @@
 #customLink:hover {
   cursor: pointer;
   font-weight: bold;
+  user-select: none;
 }
 
 #bodyItem {
@@ -70,6 +71,13 @@ body {
 #Woa-Woay {
   width: 50%;
 }
+
+#carouPoivre {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 100%;
+} 
 
 @keyframes App-logo-spin {
   from {

@@ -79,7 +79,7 @@ function Register(props) {
 
                             <div class="form-group">
                                 <button type="button" class="btn btn-link" onClick={goLogin}>Connexion</button>
-                                <input type="button" class="btn btn-primary" value={loading ? 'Loading...' : 'Register'} onClick={handleRegister} disabled={loading} /><br />
+                                <input type="button" class="btn btn-primary" value={loading ? 'Loading...' : 'S\'inscrire'} onClick={handleRegister} disabled={loading} /><br />
                             </div>
 
                         </form>

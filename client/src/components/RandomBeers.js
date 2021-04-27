@@ -13,6 +13,7 @@ class RandomBeers extends React.Component {
   }
 
   nbItemsWanted = 10;
+  nbTest = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   componentDidMount(){
     this.findRandomBeers();
@@ -38,13 +39,13 @@ class RandomBeers extends React.Component {
 
     for(let i = 0; i < this.nbItemsWanted; i -= -1){
 
-        const response = await axios.get("https://api.punkapi.com/v2/beers/random");
+      const response = await axios.get("https://api.punkapi.com/v2/beers/random");
 
-        const fetchedBeer = response.data[0];
+      const fetchedBeer = response.data[0];
 
-        let beer = {id: fetchedBeer.id, name: fetchedBeer.name, abv: fetchedBeer.abv, image: fetchedBeer.image_url, description: fetchedBeer.description, tag: fetchedBeer.tagline, date: fetchedBeer.first_brewed};
+      let beer = {id: fetchedBeer.id, name: fetchedBeer.name, abv: fetchedBeer.abv, image: fetchedBeer.image_url, description: fetchedBeer.description, tag: fetchedBeer.tagline, date: fetchedBeer.first_brewed};
 
-        this.setState({ randoms: [...this.state.randoms, beer] })
+      this.setState({ randoms: [...this.state.randoms, beer] })
     }
 
     this.setState({ done: true });
