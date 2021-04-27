@@ -144,7 +144,38 @@ function Home() {
 
                 {!myBeers && !randomBeers && !about && !searchBeers &&
                     <div id="bodyItem">
-                        Page d'accueil !
+                        <div class="container">
+                            <div class="row">
+                                <h1>MyBeers</h1>
+                                <div class="card-deck" style={{marginTop    : "2%"}}>
+                                    <div class="card">
+                                        <img src="./favoris.png" class="card-img-top" alt="image" />
+                                        <div class="card-body">
+                                            <h5 class="card-title">Mes bières</h5>
+                                            <p class="card-text">Consultez vos favoris depuis notre interface. Cette fonctionnalité vous permet de consulter et supprimer voss bières favorites.</p>
+                                        </div>
+                                        <button type="button" class="btn btn-link" onClick={showFavorites}><i class="far fa-star"></i>&nbsp;Consulter</button>
+                                    </div>
+                                    <div class="card">
+                                        <img src="./aleatoire.png" class="card-img-top" alt="image" />
+                                        <div class="card-body">
+                                            <h5 class="card-title">Bières aléatoires</h5>
+                                            <p class="card-text">Trouvez la bière de vos rêves de manière aléatoire !</p>
+                                        </div>
+                                        <button type="button" class="btn btn-link" onClick={showRandom}><i class="fas fa-random"></i>&nbsp;Trouver</button>
+                                    </div>
+                                    <div class="card">
+                                        <img src="./chercher.png" class="card-img-top" alt="image" />
+                                        <div class="card-body">
+                                            <h5 class="card-title">Chercher une bière</h5>
+                                            <p class="card-text">Vous avez goûté une bonne bière hier soir ? Cherchez là depuis la barre de navigation de l'application.</p>
+                                            <p class="card-text"><input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Rechercher" {...beerName}/></p>
+                                        </div>
+                                        <button type="button" class="btn btn-link" onClick={findBeers}><i class="fas fa-search"></i>&nbsp;Rechercher</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 }
                 

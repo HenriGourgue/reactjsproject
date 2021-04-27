@@ -67,6 +67,10 @@ body {
   height: 100px;
 }
 
+#Woa-Woay {
+  width: 50%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
