@@ -47,8 +47,8 @@ class MyBeers extends React.Component {
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-                <h1>Bières favorites <span class="badge badge-pill badge-primary">{this.state.favorites.length}</span> :</h1><br/>
-              </div>
+              <h1>Bières favorites <span class="badge badge-pill badge-primary">{this.state.favorites.length}</span> :</h1><br/>
+            </div>
           </div>
           {this.state.done == true && this.state.favorites.length > 0 &&
             listBeers
